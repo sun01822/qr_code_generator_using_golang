@@ -32,17 +32,16 @@ func main() {
 	q := NewQRCode("http://github.com/sun01822", qrcode.High, 20, color.Black, color.White, true)
 
 	// Generate the QR code
-	qr, err := qrcode.New(q.content, q.level)
+	qr, err := qrcode.NewWithForcedVersion(q.content, q.versionNumber, q.level)
 	if err != nil {
 		log.Fatalf("Failed to create QR code: %v", err)
 	}
 
-	// Configure the QR code appearance
-	qr.DisableBorder = q.disableBorder
-	qr.VersionNumber = q.versionNumber
+	// // Configure the QR code appearance
+	// qr.DisableBorder = q.disableBorder
 
 	// Save the QR code to a file
-	err = qr.WriteFile(256, "github_qrcode1.png")
+	err = qr.WriteFile(256, "github_qrcode.png")
 	if err != nil {
 		log.Fatalf("Failed to save QR code: %v", err)
 	}
